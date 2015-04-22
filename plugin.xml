@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.kochava.sdk"
+    version="0.0.1">
+
+    <name>kochava</name>
+    <description>kochava plugin for Cordova</description>
+    <license>MIT License</license>
+    <keywords>kochava</keywords>
+    <author>dabgaming</author>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module src="www/kochava.js" name="Kochava">
+        <clobbers target="Kochava" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+	    <uses-permission android:name="android.permission.INTERNET" />
+	    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+        </config-file>
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Kochava">
+                <param name="android-package" value="com.kochava.sdk.KochavaCordova"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+	<source-file src="src/android/kochava/KochavaSDK.jar" target-dir="libs" framework="true" />
+	<source-file src="src/android/com/kochava/sdk/KochavaCordova.java"   target-dir="src/com/kochava/sdk" />
+    </platform>
+
+</plugin>

@@ -1,2 +1,2 @@
-# CordovaPlugin-Kochava
-Cordova plugin for integration with the Kochava tracking system
+## For installation instructions, see http://support.kochava.com
+

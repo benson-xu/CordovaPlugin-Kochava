@@ -18,26 +18,30 @@
 - (void) KochavaConnectionDidFinishLoading:(NSDictionary *)responseDict;
 - (void) KochavaConnectionDidFailWithError:(NSError *)error;
 - (void) KochavaRetrieveAttribution:(NSDictionary *)attributionResponseDict;
-- (void) KochavaiBeaconMonitorLocations:(NSDictionary *)iBeaconLocations;
 - (void) KochavaInitResult:(NSDictionary *)initResult;
 - (void) KochavaInitialResult:(NSDictionary *)initialResult;
+- (void) KochavaBackgroundFlushCompleted;
 @end
 
 
 @protocol KochavaLocationManagerDelegate;
 @protocol KochavaLocationManagerDelegate <NSObject>
 @optional
-- (void) locationUpdate:(CLLocation*)newLocation;
-- (void) iBeaconBarrierCrossed:(NSDictionary*)iBeaconBarrierAction;
+- (void) currentLocationUpdate:(NSDictionary*)newLocation;
 @end
 
+@protocol KochavaiAdAttributionDelegate;
+@protocol KochavaiAdAttributionDelegate <NSObject>
+@optional
+- (void) iAdAttributionData:(NSDictionary*)iAdAttributionPayload :(bool)isUnknown;
+@end
 
 #pragma mark - -------------------------------------
 #pragma mark - Kochava Client
 
 @protocol KochavaTrackerClientDelegate;
 
-@interface KochavaTracker : NSObject <KochavaNetworkAccessDelegate, KochavaLocationManagerDelegate>
+@interface KochavaTracker : NSObject <KochavaNetworkAccessDelegate, KochavaLocationManagerDelegate, KochavaiAdAttributionDelegate>
 
 #pragma mark - Swift Bridge
 - (KochavaTracker*) swiftInitKochavaWithParams:(id)initDict;
@@ -67,6 +71,7 @@
 - (void) setLimitAdTracking:(bool)limitAdTracking;
 - (id) retrieveAttribution;
 - (void) sendDeepLink:(NSURL*)url :(NSString*)sourceApplication;
+
 - (NSString*) getKochavaDeviceId;
 - (bool) presentInitAd;
 
@@ -87,9 +92,6 @@
 @optional
 - (void) Kochava_attributionResult:(NSDictionary*)attributionResult;
 - (void) Kochava_presentInitAd:(bool)presentInitAdResult;
-
-- (void) Kochava_iBeaconBarrierCrossed:(NSDictionary*)iBeaconBarrierAction;
-- (void) swiftDelegate:(int)testInt;
 @end
 
 

@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.kochava.sdk"
-    version="1.1.1">
+    version="1.2.0">
 
     <name>Kochava</name>
     <description>Kochava plugin for Cordova</description>
@@ -55,8 +55,6 @@
 			</feature>
         </config-file>
 
-		<asset src="src/ios/js/KochavaBeaconNotification.js" target="js/KochavaBeaconNotification.js" />
-		
 		<header-file src="src/ios/KochavaEvents.h" />
 		<source-file src="src/ios/KochavaEvents.m" />
 

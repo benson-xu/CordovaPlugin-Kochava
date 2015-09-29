@@ -198,30 +198,6 @@
 	}];
 }
 
-- (void) Kochava_iBeaconBarrierCrossed:(NSDictionary*)iBeaconBarrierAction
-{
-	NSMutableDictionary *beaconDictionary =[[NSMutableDictionary alloc]init];
-	
-	CLBeaconRegion *region = [iBeaconBarrierAction objectForKey:@"region"];
-	[beaconDictionary setObject:region.identifier forKey:@"identifier"];
-	[beaconDictionary setObject:region.proximityUUID.UUIDString forKey:@"UUID"];
-	[beaconDictionary setObject:[NSString stringWithFormat:@"%@", region.minor] forKey:@"minor"];
-	[beaconDictionary setObject:[NSString stringWithFormat:@"%@", region.major] forKey:@"major"];
-	[beaconDictionary setObject:[iBeaconBarrierAction objectForKey:@"state"] forKey:@"state"];
-	
-	NSString *JSONString = @"";
-	NSError *error;
-	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:beaconDictionary options:0 error:&error];
-	
-	if (jsonData) {
-		JSONString = [[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding];
-	}
-	
-	NSString *jsStatement = [NSString stringWithFormat:@"window.beaconNotification.notificationCallback('%@');",JSONString];
-	[self.webView stringByEvaluatingJavaScriptFromString:jsStatement];
-}
-
-
 - (void) Kochava_attributionResult:(NSDictionary *)attributionResult
 {
 	// attributionResult will either be

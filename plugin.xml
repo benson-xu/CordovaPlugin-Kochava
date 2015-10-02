@@ -14,12 +14,6 @@
         <engine name="cordova" version=">=3.0.0" />
     </engines>
 
-    <dependency id="cordova-plugin-chrome-apps-common@1" />
-    <dependency id="cordova-plugin-chrome-apps-runtime@1" />
-    <dependency id="cordova-plugin-inappbrowser@1" />
-    <dependency id="cordova-plugin-google-open-source-ios" />
-    <dependency id="cordova-plugin-google-plus-ios" />
-
     <js-module src="www/kochava.js" name="Kochava">
         <clobbers target="Kochava" />
     </js-module>
@@ -28,6 +22,9 @@
 
 	<!-- android -->
     <platform name="android">
+
+        <dependency id="com.google.playservices" url="https://github.com/MobileChromeApps/google-play-services.git" commit="1f56399572d255193f8f9564843df60e50938e69" />
+
 		<config-file parent="/*" target="res/xml/config.xml">
 			<feature name="KochavaEvents">
 				<param name="android-package" value="com.kochava.sdk.KochavaEvents" />			
@@ -49,7 +46,6 @@
 		</config-file>
 		<source-file src="src/android/libs/KochavaSDK.jar" target-dir="libs" />
 		<source-file src="src/android/KochavaEvents.java" target-dir="src/com/kochava/sdk" />
-        <framework src="com.google.android.gms:play-services-identity:+" />
 	</platform>
     <!-- ios -->
     <platform name="ios">

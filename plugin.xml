@@ -22,9 +22,6 @@
 
 	<!-- android -->
     <platform name="android">
-
-        <framework src="com.google.android.gms:play-services-identity:+" />
-
 		<config-file parent="/*" target="res/xml/config.xml">
 			<feature name="KochavaEvents">
 				<param name="android-package" value="com.kochava.sdk.KochavaEvents" />			
@@ -46,6 +43,7 @@
 		</config-file>
 		<source-file src="src/android/libs/KochavaSDK.jar" target-dir="libs" />
 		<source-file src="src/android/KochavaEvents.java" target-dir="src/com/kochava/sdk" />
+        <framework src="com.google.android.gms:play-services-identity:+" />
 	</platform>
     <!-- ios -->
     <platform name="ios">
